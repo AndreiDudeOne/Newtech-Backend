@@ -38,30 +38,31 @@ function writeOneMillionTimes(writer, data, encoding, callback) {
   }
 } 
 
-writeOneMillionTimes(writeStream, 'Dummy data', 'utf-8', () => {
-  console.log('Function finisehd');
-});
+// writeOneMillionTimes(writeStream, 'Dummy data', 'utf-8', () => {
+//   console.log('Function finisehd');
+// });
 
 // Investigat
 fs.readFile('dummy-large.txt', (err, data) => {
-  if (fs.existsSync('dummy-large.txt')) {
-    // console.log(data.);
-  }
+   console.log(data);
+  // if (fs.existsSync('dummy-large.txt')) {
+  //   console.log(data);
+  // }
    // if (err) console.log(err);
 })
 
 // Copiere / modificare dintr-un stream in altul
-const readable = fs.createReadStream('dummy.txt');
-// Create a writable stream
-const writable = fs.createWriteStream('output.txt');
+// const readable = fs.createReadStream('dummy.txt');
+// // Create a writable stream
+// const writable = fs.createWriteStream('output.txt');
  
-// Calling pipe method
-readable.pipe(writable);
+// // Calling pipe method
+// readable.pipe(writable);
 
-readStream.on('data', (chunk) => {
-  console.log(chunk.toString());
-  // console.log(chunk.toString());
-})
+// readStream.on('data', (chunk) => {
+//   console.log(chunk.toString());
+//   // console.log(chunk.toString());
+// })
 
 
 
