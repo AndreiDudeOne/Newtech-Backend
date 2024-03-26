@@ -16,4 +16,9 @@ cookieRouter.get("/getDummyCookie", (req, res) => {
   return res.send("cookie has been retrieved!");
 });
 
+cookieRouter.get("/dummyRoute", (req, res) => {
+  console.log(req.cookies);
+  return res.send(req.cookies);
+});
+
 export default cookieRouter;
