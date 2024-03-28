@@ -1,0 +1,32 @@
+[
+  {
+    "shiftLocation": "Cluj-Napoca",
+    "address": "Address A",
+    "period": "20h",
+    "userId": "123abc"
+  },
+  {
+    "shiftLocation": "Cluj-Napoca",
+    "address": "Address B",
+    "period": "30h",
+    "userId": "123abc"
+  },
+  {
+    "shiftLocation": "Gherla",
+    "address": "Address C",
+    "period": "30h",
+    "userId": "123abc"
+  },
+  {
+    "shiftLocation": "Bucuresti",
+    "address": "Address X",
+    "period": "30h",
+    "userId": "123abc"
+  },
+  {
+    "shiftLocation": "Bucuresti",
+    "address": "Address Y",
+    "period": "30h",
+    "userId": "abc234"
+  }
+]

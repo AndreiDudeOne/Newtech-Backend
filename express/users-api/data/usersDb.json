@@ -1,0 +1,14 @@
+[
+  {
+    "userId": "123abc",
+    "username": "alfa",
+    "password": "alfapw",
+    "roles": ["USER"]
+  },
+  {
+    "userId": "abc234",
+    "username": "beta",
+    "password": "betapw",
+    "roles": ["USER", "ADMIN"]
+  }
+]

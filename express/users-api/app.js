@@ -6,7 +6,7 @@ import utilsMdw from "./middleware/utils.js";
 import cookieParser from "cookie-parser";
 import sessionRouter from "./routes/sessionRouter.js";
 import session from "express-session";
-import jwtRouter from "./routes/jwt.js";
+import jwtRouter from "./routes/jwtRouter.js";
 
 const PORT = 3002;
 const app = express();
