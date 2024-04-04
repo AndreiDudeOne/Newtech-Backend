@@ -2,8 +2,8 @@ import db from "./../config/db.js";
 
 const register = async (user) => {
   console.log("Db collections Users");
-  const userCollection = await db.connect();
-  return userCollection.users.insertOne({
+  const collections = await db.getDb();
+  return collections.users.insertOne({
     fullName: user.fullName,
     username: user.username,
     emailAddress: user.emailAddress,
