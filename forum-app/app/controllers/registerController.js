@@ -1,14 +1,12 @@
 import bcrypt from "bcrypt";
 import registerService from "./../services/registerService.js";
+import responses from "./../utils/responses.js";
 
 const register = async (req, res) => {
   const body = req.body;
 
   if (!body.fullName || !body.username || !body.password) {
-    res.send(400, {
-      errStatus: 400,
-      errMessage: "Request data was not sufficient!",
-    });
+    responses.responseNoContent();
   }
 
   const saltRounds = 8;
@@ -25,7 +23,7 @@ const register = async (req, res) => {
         message: "User was added",
       });
     } catch (error) {
-      res.send(500, "There was an error with the server");
+      responses.responseGenericServerError();
       console.log(error);
     }
   });

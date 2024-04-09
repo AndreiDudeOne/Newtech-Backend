@@ -13,10 +13,12 @@ async function connect() {
   const db = client.db(dbName);
   const usersCollection = db.collection("users");
   const articlesCollection = db.collection("articles");
+  const commentsCollection = db.collection("comments");
 
   collections = {
     users: usersCollection,
     articles: articlesCollection,
+    comments: commentsCollection,
   };
 
   return collections;
