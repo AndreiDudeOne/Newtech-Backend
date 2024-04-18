@@ -14,7 +14,6 @@ const articleSchema = new Schema({
     type: Array,
     default: [],
   },
-
   userId: {
     type: String,
     required: true,

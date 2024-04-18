@@ -25,6 +25,7 @@ const getArticle = async (req, res) => {
 };
 
 const createArticle = async (req, res) => {
+  console.log(data, "DATA");
   const data = req.body;
   const userTokenData = req.tokenData;
 
@@ -43,6 +44,7 @@ const createArticle = async (req, res) => {
   try {
     const response = await articlesService.createArticle(article);
     const data = await articlesService.getArticleById(response.insertedId);
+    console.log(data);
     res.send(200, {
       status: 200,
       data: data[0],
