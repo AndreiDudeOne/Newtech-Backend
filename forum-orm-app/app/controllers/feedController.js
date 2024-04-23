@@ -1,14 +1,29 @@
-import articlesService from "../services/articlesService.js";
+import aggregates from "../services/aggregates/index.js";
 import responses from "./../utils/responses.js";
 
 const getFeed = async (req, res) => {
   const userTokenData = req.tokenData;
+  const params = req.query;
+  const filterObject = {};
+
+  if (params.content) {
+    filterObject.content = params.content;
+  }
+
+  if (params.keywords?.length > 0) {
+    filterObject.keywords = Array.isArray(params.keywords)
+      ? params.keywords
+      : [params.keywords];
+  }
 
   // Sa contina articole nu ale noastre
   try {
-    const articles = await articlesService.getFullArticlesForFeed(
-      userTokenData.id
+    const articles = await aggregates.getFullArticlesForFeed(
+      userTokenData.id,
+      false,
+      filterObject
     );
+
     res.send({
       status: 200,
       data: articles,
@@ -21,10 +36,11 @@ const getFeed = async (req, res) => {
 
 const getUserFeed = async (req, res) => {
   const userTokenData = req.tokenData;
-  console.log(userTokenData);
+  // console.log(userTokenData);
   try {
-    const articles = await articlesService.getFullArticlesForFeed(
-      userTokenData.id
+    const articles = await aggregates.getFullArticlesForFeed(
+      userTokenData.id,
+      true
     );
 
     console.log(articles);
