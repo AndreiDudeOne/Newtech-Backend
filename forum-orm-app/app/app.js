@@ -5,7 +5,11 @@ import articlesRouter from "./routes/articlesRouter.js";
 import commentsRouter from "./routes/commentsRouter.js";
 import feedRouter from "./routes/feedRouter.js";
 import mongoose from "mongoose";
-import { MONGO_URL } from "./config/env-vars.js";
+import dotenv from "dotenv";
+import logger from "./utils/logger.js";
+
+dotenv.config();
+
 const PORT = 3001;
 const app = express();
 
@@ -19,8 +23,9 @@ app.use("/api/comments", commentsRouter);
 app.use("/api/feed", feedRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-  mongoose.connect(`${MONGO_URL}/forum-odm-db`).then(() => {
-    console.log("Db Connection started");
+  logger.info(`Server started on port ${PORT}`);
+  // logger2.info(`Server started on port ${PORT}`);
+  mongoose.connect(`${process.env.MONGO_URL}/forum-odm-db`).then(() => {
+    logger.info("Db Connection started");
   });
 });

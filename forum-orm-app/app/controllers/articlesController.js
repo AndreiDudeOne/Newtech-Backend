@@ -3,19 +3,10 @@ import articlesService from "./../services/articlesService.js";
 import responses from "./../utils/responses.js";
 import { articleResponseFactory } from "./factory/articleFactory.js";
 import { ObjectId } from "mongodb";
+import logger from "./../utils/logger.js";
 
 const getArticle = async (req, res) => {
   const { id } = req.params;
-
-  const parm = { ...req.query };
-
-  const t = ["sort"];
-
-  t.forEach((el) => {
-    delete parm[el];
-  });
-
-  console.log(parm);
 
   if (!id) {
     responses.responseBadRequest(res, "No id provided");
@@ -26,9 +17,9 @@ const getArticle = async (req, res) => {
     const objectId = ObjectId.createFromHexString(id);
     const article = await articlesService.getArticleById(objectId);
     const comments = await commentsService.getCommentsByArticleId(id);
-
-    console.log(comments);
     const articleResp = articleResponseFactory({ article, comments });
+
+    logger.info(articleResp, `Article retrieved article id: ${objectId}`);
 
     res.send(200, articleResp);
   } catch (error) {
@@ -55,13 +46,13 @@ const createArticle = async (req, res) => {
   try {
     const response = await articlesService.createArticle(article);
 
-    console.log(data);
+    logger.info(response, `Article created for user ${userTokenData.id}`);
     res.send(200, {
       status: 200,
       data: response,
     });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     responses.responseGenericServerError(res);
   }
 };
@@ -92,6 +83,8 @@ const updateArticle = async (req, res) => {
     await articlesService.updateArticleById(objectId, data);
     const updatedData = await articlesService.getArticleById(objectId);
 
+    logger.info(updatedData, `Article updated for user ${userTokenData.id}`);
+
     res.send(200, updatedData);
   } catch (e) {
     responses.responseGenericServerError(res);
@@ -113,6 +106,9 @@ const deleteArticle = async (req, res) => {
       return;
     }
     await articlesService.deleteArticleById(objectId);
+
+    logger.info(article, `Article deleted for user ${userTokenData.id}`);
+
     res.send(200);
   } catch (e) {
     responses.responseGenericServerError(res);
@@ -140,6 +136,10 @@ const addLike = async (req, res) => {
       objectId,
       "likes",
       userTokenData.id
+    );
+
+    logger.info(
+      `Article: ${objectId} received like from user: ${userTokenData.id}`
     );
 
     res.send(200, "Data liked");

@@ -36,14 +36,12 @@ const getFeed = async (req, res) => {
 
 const getUserFeed = async (req, res) => {
   const userTokenData = req.tokenData;
-  // console.log(userTokenData);
   try {
     const articles = await aggregates.getFullArticlesForFeed(
       userTokenData.id,
       true
     );
 
-    console.log(articles);
     res.send({
       status: 200,
       data: articles,
