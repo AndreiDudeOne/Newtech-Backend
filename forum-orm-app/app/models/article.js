@@ -24,6 +24,8 @@ const articleSchema = new Schema({
   },
 });
 
+// articleSchema.index({ content: "text "});
+
 const Article = mongoose.model("Article", articleSchema);
 
 export default Article;

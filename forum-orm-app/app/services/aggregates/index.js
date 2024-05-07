@@ -13,7 +13,7 @@ const getFullArticlesForFeed = async (
   if (filterObject.content && filterObject.content.trim().length > 0) {
     filterArticleObject["$text"] = { $search: filterObject.content };
   }
-  console.log(filterObject);
+
   if (filterObject.keywords?.length > 0) {
     filterArticleObject["keywords"] = { $in: [...filterObject.keywords] };
   }
