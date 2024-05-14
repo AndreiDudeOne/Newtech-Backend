@@ -44,8 +44,11 @@ const createArticle = async (req, res) => {
   };
 
   try {
+    logger.info(
+      article,
+      `Article creation request for user ${userTokenData.id}`
+    );
     const response = await articlesService.createArticle(article);
-
     logger.info(response, `Article created for user ${userTokenData.id}`);
     res.send(200, {
       status: 200,

@@ -23,7 +23,6 @@ const login = async (req, res) => {
       res.send(401, "The username or password was not correct");
     }
 
-    logger.info(user, `User logged`);
     const userPw = user[0].password;
     // Verificare parola (comparare parola hashuita)
     bcrypt.compare(body.password, userPw, function (err, result) {

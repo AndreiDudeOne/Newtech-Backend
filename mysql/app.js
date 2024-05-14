@@ -48,7 +48,7 @@ con.connect((err) => {
     GROUP BY user_id;
   `;
 
-  con.query(queryNumberOfOrdersPerUser, (err, res) => {
+  con.query(queryGetUsersProducts, (err, res) => {
     console.log(res);
   });
 });
